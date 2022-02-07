@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>List of Scheduled Flights</h1>
+  <div>
+    <a href="#" routerLink="../addschedule/" class="btn btn-info">Create New Flight Schedule</a>
+  </div>
+
+  <table class="table table-bordered ">
+    <tr>
+      <th>Flight Number</th>
+      <th>Airline</th>
+      <th>From </th>
+      <th>To </th>
+      <th>BC Cost </th>
+      <th>NC Cost </th>
+      <th width="220px">Action</th>
+    </tr>
+    
+    <tr *ngFor="let schedule of schedules">
+      <td>{{schedule.flightNumber}}</td>
+      <td>{{schedule.airline}}</td>
+      <td>{{schedule.fromPlace}}</td>
+      <td>{{schedule.toPlace}}</td>
+      <td>{{schedule.bCost}}</td>
+      <td>{{schedule.nCost}}</td>
+      <td>
+        <a href="#" [routerLink]="['../viewschedule', schedule.flightNumber]" class="btn btn-info">View</a>
+        <!-- <button type="button" (click)="findFlight(schedule.flightNumber)" class="btn btn-danger">View</button> -->
+        <button type="button" (click)="deleteSchedule(schedule.flightNumber)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </table>
+</div>

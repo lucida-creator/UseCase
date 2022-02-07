@@ -1,0 +1,112 @@
+<h3 style="text-align: center;">Add Flight</h3>
+<div style="width: 400px; margin-left: auto; margin-right: auto;">
+    <form [formGroup]="form" (ngSubmit)="submit()" >
+        <div class="form-group">
+            <label for="name">Flight Number</label>
+            <input type="text" placeholder="Flight Number" pattern="^\d{7}$" formControlName="flightNumber" class="form-control" id="flightNo"
+                name="flightNo">
+                <div *ngIf="f['flightNumber'].touched && f['flightNumber'].invalid" class="alert alert-danger">flightNo is required.</div>
+                    <div *ngIf="f['flightNumber'].errors && f['flightNumber'].errors['required']"></div>
+        </div>
+        <div class="form-group">
+            <label for="name">Airline</label>
+            <input type="text" placeholder="Airline"  formControlName="airline" class="form-control" id="airline" name="airline">
+            <div *ngIf="f['airline'].touched && f['airline'].invalid" class="alert alert-danger">Airline is required.</div>
+            <div *ngIf="f['airline'].errors && f['airline'].errors['required']"></div>
+        </div>
+        <div class="form-group">
+            <label for="name">From </label>
+            <select formControlName="fromPlace" class="form-control">
+                <option disabled>Select From</option>
+                <option>Choose City</option>
+                <option *ngFor="let city of citiesList">{{city}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="name">To </label>
+            <select formControlName="toPlace" class="form-control">
+                <option disabled>Select To</option>
+                <option>Choose City</option>
+                <option *ngFor="let city of citiesList">{{city}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="name">Start Date</label>
+            <input  formControlName="startDateTime" class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="startDateSelected" ngbDatepicker #sd="ngbDatepicker">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="sd.toggle()" type="button">Date</button>
+              </div>
+        </div>
+        <div class="form-group">
+            <label for="name">End Date</label>
+            <input formControlName="endDateTime" class="form-control" placeholder="yyyy-mm-dd" [(ngModel)]="endDateSelected" ngbDatepicker #ed="ngbDatepicker">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="ed.toggle()" type="button">Date</button>
+              </div>
+        </div>
+        <div class="form-group">
+            <label for="name">Scheduled Days </label>
+            <select formControlName="scheduledDays" class="form-control">
+                <option disabled>Select schedule</option>
+                <option>Choose days</option>
+                <option *ngFor="let day of scheduleDaysList">{{day}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="name">Instuments Used</label>
+            <input type="text" placeholder="Instruments" class="form-control" id="instruments" formControlName="instrumentUsed"
+                name="instruments">
+                <div *ngIf="f['instrumentUsed'].touched && f['instrumentUsed'].invalid" class="alert alert-danger">instruments is required.</div>
+                    <div *ngIf="f['instrumentUsed'].errors && f['instrumentUsed'].errors['required']"></div>
+                
+        </div>
+        <div class="form-group">
+            <label for="name">Total Bussiness Class Seats</label>
+            <input type="number" placeholder="BSeats"  class="form-control" id="bseats" formControlName="totalBCSeats"
+                name="bseats">
+                <div *ngIf="f['totalNBCSeats'].touched && f['totalNBCSeats'].invalid" class="alert alert-danger">BSeats is required.</div>
+                    <div *ngIf="f['totalNBCSeats'].errors && f['totalNBCSeats'].errors['required']"></div>
+        </div>
+        <div class="form-group">
+            <label for="name">Total Normal Class Seats</label>
+            <input type="number" 
+            placeholder="NSeats" class="form-control" id="nseats" formControlName="totalNBCSeats"
+                name="nseats">
+                <div *ngIf="f['totalNBCSeats'].touched && f['totalNBCSeats'].invalid" class="alert alert-danger">Seats is required.</div>
+                    <div *ngIf="f['totalNBCSeats'].errors && f['totalNBCSeats'].errors['required']"></div>
+        </div>
+        <div class="form-group">
+            <label for="name">Bussiness Class Cost</label>
+            <input type="number" placeholder="BCost"  class="form-control" id="bcost" formControlName="bCost"
+                name="bcost">
+
+                <div *ngIf="f['bCost'].touched && f['bCost'].invalid" class="alert alert-danger">B Cost is required.</div>
+                    <div *ngIf="f['bCost'].errors && f['bCost'].errors['required']"></div>            
+                </div>
+        <div class="form-group">
+            <label for="name">Normal Class Cost</label>
+            <input type="number" placeholder="Ncost" class="form-control" id="ncost"  formControlName="nCost"
+                name="ncost">
+                <div *ngIf="f['nCost'].touched && f['nCost'].invalid" class="alert alert-danger">N Cost is required.</div>
+                    <div *ngIf="f['nCost'].errors && f['nCost'].errors['required']"></div>
+        </div>
+        <div class="form-group">
+            <label for="name">Number of Rows</label>
+            <input type="number" placeholder="Rows" class="form-control" id="rows" formControlName="noOfRows"
+                name="rows">
+                <div *ngIf="f['noOfRows'].touched && f['noOfRows'].invalid" class="alert alert-danger">Rows is required.</div>
+                    <div *ngIf="f['noOfRows'].errors && f['noOfRows'].errors['required']"></div>
+        </div>
+        <div class="form-group">
+            <label for="name">Meal Type </label>
+            <select formControlName="mealsType" class="form-control">
+                <option disabled>Select Meal</option>
+                <option>Choose Meal</option>
+                <option *ngFor="let meal of mealList">{{meal}}</option>
+            </select>
+            <div *ngIf="f['mealsType'].touched && f['mealsType'].invalid" class="alert alert-danger">Meal Type is required.</div>
+                    <div *ngIf="f['mealsType'].errors && f['mealsType'].errors['required']"></div>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>

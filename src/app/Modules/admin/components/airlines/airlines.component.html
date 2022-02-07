@@ -1,0 +1,28 @@
+<div class="container">
+    <h3>List of Airlines </h3>
+    <div>
+      <a href="#" routerLink="../addairline/" class="btn btn-info">Create New Airline</a>
+    </div>
+  
+    <table class="table table-bordered ">
+      <tr>
+        <th>Airline Name</th>
+        <th>Logo</th>
+        <th>Contact Address </th>
+        <th>Contact Number </th>
+        <th width="220px">Action</th>
+      </tr>
+      <tr *ngFor="let airline of airlines">
+          <td>{{airline.name}}</td>
+          <td>{{airline.logo}}</td>
+          <td>{{airline.contactAddress}}</td>
+          <td>{{airline.contactNumber}}</td>
+          <td>
+      
+          <a href="#" [routerLink]="['../viewairline/',airline.name]" class="btn btn-info">View</a>
+                               
+          <button type="button" (click)="deleteSchedule(airline.name)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </div>
